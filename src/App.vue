@@ -63,7 +63,7 @@ export default {
           content: 'flexible',
           options: {
             backgroundColor: 'rgba(6,45,146,.6)',
-            content: '<P><span style="font-family: anana;font-size: 1.5rem">Yummy notie</span> is extremely flexible! You can use HTML to represent any kind of notification.<br><a href="">More information.</a></P>',
+            content: '<P><span style="font-family: anana;font-size: 1.5rem">Yummy notie</span> is extremely flexible! You can use HTML to represent any kind of notification.<br><a href="https://github.com/Yuyz0112/vue-notie">More information.</a></P>',
             textColor: '#03D6D2'
           }
         }
@@ -111,6 +111,8 @@ export default {
     flex-direction: column
     .mask
       position: absolute
+      left: 0
+      top: 0
       background: rgba(30,39,68,.5)
     main
       position: relative
