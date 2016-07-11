@@ -63,7 +63,7 @@ export default {
           content: 'flexible',
           options: {
             backgroundColor: 'rgba(6,45,146,.6)',
-            content: '<P><span style="font-family: anana;font-size: 1.5rem">Yummy notie</span> is extremely flexible! You can use HTML to represent any kind of notification.<br><a href="https://github.com/Yuyz0112/vue-notie">More information.</a></P>',
+            content: '<P><span style="font-family: anana;font-size: 1.5rem">Yummy notie</span> is extremely flexible! You can use HTML to make any kind of notification.<br><i><a href="https://github.com/Yuyz0112/vue-notie">More information.</a></i></P>',
             textColor: '#03D6D2'
           }
         }
