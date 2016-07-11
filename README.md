@@ -3,7 +3,7 @@
 > a clean and simple notification component for vue.js. Deeply inspired by Notie.js.
 > [Demo](http://lab.myriptide.com/vue-notie/)
 
-![preview](http://img.myriptide.com/others/yummy-notie-m.gif)
+![preview](/yummy-notie-m.gif?raw=true "Demo")
 
 ## How to use
 
