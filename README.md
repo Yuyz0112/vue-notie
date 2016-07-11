@@ -14,7 +14,7 @@ Since it is a component instead of a plugin, all you need to do is import the mo
 
 The sample was set up by vue-cli's webpack template. You need to import Notification.vue in the component folder into your project. Then you can regist it and use it in the HTML template.
 
-```
+```HTML
 <template>
   <notification
   :options.sync="options"
@@ -42,7 +42,7 @@ We need to pass two data into Notification.vue with props or vuex. Data 'show' c
 
 ## options
 
-```
+```javascript
 options: {
   autoClose: true,
   backgroundColor: '#769FCD',
