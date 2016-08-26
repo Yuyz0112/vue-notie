@@ -79,80 +79,95 @@ export default {
 }
 </script>
 
-<style lang="sass">
-  $font-face: "anana"
-  $family-sans-serif: "Helvetica Neue", "Helvetica", "Arial", "Microsoft Yahei", sans-serif !default
-  @font-face
-    font-family: $font-face; font-style: normal; font-weight: normal
-    src: url('./assets/#{$font-face}.eot')
-    src: url('./assets/#{$font-face}.eot?') format('eot')
-    src: url('./assets/#{$font-face}.woff') format('woff')
-    src: url('./assets/#{$font-face}.ttf')  format('truetype')
-  *
-    margin: 0
+<style>
+  @font-face {
+    font-family: anana;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/anana.eot');
+    src: url('./assets/anana.eot') format("eot");
+    src: url('./assets/anana.woff') format("woff");
+    src: url('./assets/anana.ttf') format("truetype")
+  }
+  * {
+    margin: 0;
     padding: 0
-  a,
-  a:visited
+  }
+  a, a:visited {
     color: #fff
-  html,
-  body,
-  #app,
-  .mask
-    height: 100%
+  }
+  #app, .mask, body, html {
+    height: 100%;
     width: 100%
-  #app
-    font-family: $family-sans-serif
-    background: url('./assets/3.jpg') center center no-repeat
-    background-size: cover
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
+  }
+  #app {
+    font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, sans-serif;
+    background: url('./assets/3.jpg') 50% no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column
-    .mask
-      position: absolute
-      left: 0
-      top: 0
-      background: rgba(30,39,68,.5)
-    main
-      position: relative
-      z-index: 2
-      width: 50%
-      @media screen and (max-width: 768px)
-        width: 100%
-      h1
-        font-family: $font-face
-        font-size: 5rem
-        opacity: .75
-        color: #21e7b6
-        text-align: center
-      .btns
-        margin-top: 3rem
-        display: flex
-        justify-content: space-around
-        width: 100%
-        margin-left: auto
-        margin-right: auto
-        @media screen and (max-width: 768px)
-          flex-direction: column
-          margin-top: 1.5rem
-        .btn
-          display: inline-block
-          border: 2px solid #21e7b6
-          border-radius: 5px
-          color: #fff
-          font-size: 1.5rem
-          height: 1.5rem
-          line-height: 1.5rem
-          padding: .75rem 1.5rem
-          align-items: center
-          justify-content: center
-          cursor: pointer
-          @media screen and (max-width: 768px)
-            width: 30%
-            margin-bottom: .5rem
-            text-align: center
-            margin-left: auto
-            margin-right: auto
-            padding: .5rem 1rem
+  }
+  #app .mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(30, 39, 68, .5)
+  }
+  #app main {
+    position: relative;
+    z-index: 2;
+    width: 50%
+  }
+  @media screen and (max-width:768px) {
+    #app main {
+      width: 100%
+    }
+  }
+  #app main h1 {
+    font-family: anana;
+    font-size: 5rem;
+    opacity: .75;
+    color: #21e7b6;
+    text-align: center
+  }
+  #app main .btns {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto
+  }
+  @media screen and (max-width:768px) {
+    #app main .btns {
+      flex-direction: column;
+      margin-top: 1.5rem
+    }
+  }
+  #app main .btns .btn {
+    display: inline-block;
+    border: 2px solid #21e7b6;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    padding: .75rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer
+  }
+  @media screen and (max-width:768px) {
+    #app main .btns .btn {
+      width: 30%;
+      margin-bottom: .5rem;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding: .5rem 1rem
+    }
+  }
 </style>
