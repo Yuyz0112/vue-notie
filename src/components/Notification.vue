@@ -1,85 +1,92 @@
 <template>
-  <div class="notification fixed"
-  v-if="show"
-  :style="setStyle"
-  transition="slide">
-    <div class="delete"
-    v-if="!options.autoClose"
-    @click="close()"></div>
-    <div class="content">
-      {{{ options.content }}}
-    </div>
+  <div>
+    <transition name="slide">
+      <div class="notification fixed"
+           v-if="myShow"
+           :style="setStyle">
+        <div class="delete"
+             v-if="!myOptions.autoClose"
+             @click="close()"></div>
+        <div class="content" v-html="myOptions.content">
+        </div>
+      </div>
+    </transition>
+    <div class="countdown"
+         v-if="myShow && myOptions.autoClose && myOptions.countdownBar"
+         :style="setTime"
+         :class="barControl"></div>
   </div>
-  <div class="countdown"
-  v-if="show && options.autoClose && options.countdownBar"
-  :style="setTime"
-  :class="barControl"></div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      timers: [],
-      barControl: ''
-    }
-  },
-  props: {
-    options: {
-      type: Object,
-      default: () => {
-        return {}
+  export default {
+    data () {
+      return {
+        timers: [],
+        barControl: '',
+        myOptions: this.options,
+        myShow: this.show
       }
     },
-    show: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    setStyle () {
-      return {
-        color: this.options.textColor || '#fff',
-        background: this.options.backgroundColor || '#21e7b6'
+    props: {
+      'options': {
+        type: Object,
+        default: {}
+      },
+      'show': {
+        type: Boolean,
+        default: false
       }
     },
-    setTime () {
-      return {
-        transition: `all ${(this.options.showTime / 1000) || 3}s linear`,
-        background: this.options.barColor || '#03D6D2'
-      }
-    }
-  },
-  methods: {
-    countdown () {
-      if (this.options.autoClose) {
-        if (this.options.countdownBar) {
-          setTimeout(() => {
-            this.barControl = 'count-leave'
-          }, 10)
+    computed: {
+      setStyle () {
+        return {
+          color: this.myOptions.textColor || '#fff',
+          background: this.myOptions.backgroundColor || '#21e7b6'
         }
-        const t = setTimeout(() => {
-          this.close()
-        }, this.options.showTime || 3000)
-        this.timers.push(t)
+      },
+      setTime () {
+        return {
+          transition: `all ${(this.myOptions.showTime / 1000) || 3}s linear`,
+          background: this.myOptions.barColor || '#03D6D2'
+        }
       }
     },
-    close () {
-      this.show = false
-      this.options = {}
-    }
-  },
-  watch: {
-    options () {
-      this.barControl = ''
-      this.timers.forEach((timer) => {
-        window.clearTimeout(timer)
-      })
-      this.timers = []
-      this.countdown()
-    }
+    methods: {
+      countdown () {
+        if (this.myOptions.autoClose) {
+          if (this.myOptions.countdownBar) {
+            setTimeout(() => {
+              this.barControl = 'count-leave'
+            }, 10)
+          }
+          const t = setTimeout(() => {
+            this.close()
+          }, this.myOptions.showTime || 3000)
+          this.timers.push(t)
+        }
+      },
+      close () {
+        this.$emit('close') // should to emit to change parent components status
+        this.myOptions = {}
+      }
+    },
+    watch: {
+      options () {
+        this.myOptions = this.options
+        this.barControl = ''
+        this.timers.forEach((timer) => {
+          window.clearTimeout(timer)
+        })
+        this.timers = []
+        this.countdown()
+      },
+      show (val) {
+        this.myShow = val
+      }
+    },
+
   }
-}
 </script>
 
 <style scoped>
@@ -87,10 +94,33 @@ export default {
     transition: all .3s ease;
     transform: translateZ(0);
   }
-  .slide-enter,
-  .slide-leave {
+
+  .slide-active-enter,
+  .slide-active-leave {
     transform: translate3d(0, -100%, 0);
   }
+
+  /*
+    .slide-enter-active, .slide-leave-active {
+    transition: all .3s ease;
+    transform: translate3d(0, -100%, 0);
+  }
+  .slide-enter, .slide-leave-to {
+    transform: translateZ(0);
+  }
+
+  */
+
+
+  .slide-enter-active, .slide-leave-active {
+    transition: all .3s ease;
+    transform: translateZ(0);
+  }
+
+  .slide-enter, .slide-leave-active {
+    transform: translate3d(0, -100%, 0);
+  }
+
   .delete {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -103,6 +133,7 @@ export default {
     width: 24px;
     float: right;
   }
+
   .delete:after,
   .delete:before {
     background: #fff;
@@ -116,15 +147,19 @@ export default {
     top: 50%;
     width: 50%;
   }
+
   .delete:before {
     transform: rotate(45deg);
   }
+
   .delete:after {
     transform: rotate(-45deg);
   }
+
   .delete:hover {
     background: rgba(51, 51, 51, .5);
   }
+
   .notification {
     width: 100%;
     line-height: 2;
@@ -133,9 +168,11 @@ export default {
     top: 0;
     left: 0;
   }
+
   .notification .content {
     padding: .75rem 2rem;
   }
+
   .countdown {
     width: 100%;
     height: 4px;
@@ -146,6 +183,7 @@ export default {
     left: 0;
     transform: translateZ(0);
   }
+
   .count-leave {
     transform: translate3d(-100%, 0, 0);
   }

@@ -5,6 +5,10 @@
 
 ![preview](/yummy-notie-m.gif?raw=true "Demo")
 
+## Upgrade to Vue 2.3+
+
+I changed those files (`build folder and config folder`) related to the new vue-cli template, and `Notification.vue、main.js、index.html` files changed related to the Upgrade Guide, see [Migration from Vue 1.x](https://vuejs.org/v2/guide/migration.html).
+
 ## How to use
 
 Components are one of the most powerful features of Vue.js. Yummy notie is a component which can help you to alert users.
