@@ -75,7 +75,7 @@
     methods: {
       notice (options) {
         this.showNotification = true
-        this.options = options
+        this.options = Object.assign({}, options)
       },
       closeNotification () {
           this.showNotification = false
